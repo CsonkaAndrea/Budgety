@@ -1,6 +1,6 @@
 let budgetController = (function () {
 
-    let Expense = function (id, description, value) {
+    const Expense = function (id, description, value) {
         this.id = id;
         this.description = description;
         this.value = value;
@@ -22,14 +22,14 @@ let budgetController = (function () {
     };
 
 
-    let Income = function (id, description, value) {
+    const Income = function (id, description, value) {
         this.id = id;
         this.description = description;
         this.value = value;
     };
 
 
-    let calculateTotal = function (type) {
+    const calculateTotal = function (type) {
         let sum = 0;
         data.allItems[type].forEach(function (cur) {
             sum += cur.value;
@@ -38,7 +38,7 @@ let budgetController = (function () {
     };
 
 
-    let data = {
+    const data = {
         allItems: {
             exp: [],
             inc: []
@@ -146,7 +146,7 @@ let budgetController = (function () {
 // UI CONTROLLER
 let UIController = (function () {
 
-    let DOMstrings = {
+    const DOMstrings = {
         inputType: '.add__type',
         inputDescription: '.add__description',
         inputValue: '.add__value',
@@ -163,7 +163,7 @@ let UIController = (function () {
     };
 
 
-    let formatNumber = function (num, type) {
+    const formatNumber = function (num, type) {
         let numSplit, int, dec;
 
         num = Math.abs(num);
@@ -183,7 +183,7 @@ let UIController = (function () {
     };
 
 
-    let nodeListForEach = function (list, callback) {
+    const nodeListForEach = function (list, callback) {
         for (let i = 0; i < list.length; i++) {
             callback(list[i], i);
         }
@@ -322,7 +322,7 @@ let UIController = (function () {
 // GLOBAL APP CONTROLLER
 let controller = (function (budgetCtrl, UICtrl) {
 
-    let setupEventListeners = function () {
+    const setupEventListeners = function () {
         let DOM = UICtrl.getDOMstrings();
 
         document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
@@ -339,7 +339,7 @@ let controller = (function (budgetCtrl, UICtrl) {
     };
 
 
-    let updateBudget = function () {
+    const updateBudget = function () {
 
         // 1. Calculate the budget
         budgetCtrl.calculateBudget();
@@ -352,7 +352,7 @@ let controller = (function (budgetCtrl, UICtrl) {
     };
 
 
-    let updatePercentages = function () {
+    const updatePercentages = function () {
 
         // 1. Calculate percentages
         budgetCtrl.calculatePercentages();
@@ -365,7 +365,7 @@ let controller = (function (budgetCtrl, UICtrl) {
     };
 
 
-    let ctrlAddItem = function () {
+    const ctrlAddItem = function () {
         let input, newItem;
 
         // 1. Get the field input data
@@ -390,7 +390,7 @@ let controller = (function (budgetCtrl, UICtrl) {
     };
 
 
-    let ctrlDeleteItem = function (event) {
+    const ctrlDeleteItem = function (event) {
         let itemID, splitID, type, ID;
 
         itemID = event.target.parentNode.parentNode.parentNode.parentNode.id;
